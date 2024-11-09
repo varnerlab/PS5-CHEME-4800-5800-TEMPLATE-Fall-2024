@@ -32,7 +32,7 @@ build(model::Type{MySimpleCobbDouglasChoiceProblem}, data::NamedTuple)::MySimple
 function build(modeltype::Type{MyRectangularGridWorldModel}, data::NamedTuple)::MyRectangularGridWorldModel
 
     # initialize and empty model -
-    model = MyRectangularGridWorldModel()
+    model = modeltype()
 
     # get the data -
     nrows = data[:nrows]
@@ -70,10 +70,10 @@ function build(modeltype::Type{MyRectangularGridWorldModel}, data::NamedTuple)::
     end
 
     # setup the moves dictionary -
-    moves[1] = (-1,0)   # a = 1 up
-    moves[2] = (1,0)    # a = 2 down
-    moves[3] = (0,-1)   # a = 3 left
-    moves[4] = (0,1)    # a = 4 right
+    moves[1] = (-1,0)   # a = 1 left
+    moves[2] = (1,0)    # a = 2 right
+    moves[3] = (0,-1)   # a = 3 down
+    moves[4] = (0,1)    # a = 4 up
 
     # add items to the model -
     model.rewards = rewards_dict
@@ -87,10 +87,10 @@ function build(modeltype::Type{MyRectangularGridWorldModel}, data::NamedTuple)::
     return model
 end
 
-function build(model::Type{MyMDPProblemModel}, data::NamedTuple)::MyMDPProblemModel
+function build(modeltype::Type{MyMDPProblemModel}, data::NamedTuple)::MyMDPProblemModel
     
     # build an empty model -
-    m = MyMDPProblemModel();
+    m = modeltype();
 
     # get data from the named tuple -
     haskey(data, :𝒮) == false ? m.𝒮 = Array{Int64,1}(undef,1) : m.𝒮 = data[:𝒮];

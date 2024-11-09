@@ -1,3 +1,17 @@
+"""
+    solve(problem::MySimpleCobbDouglasChoiceProblem)
+
+Solve the Cobb-Douglas choice problem and return the results as a dictionary.
+
+### Arguments
+- `problem::MySimpleCobbDouglasChoiceProblem`: the Cobb-Douglas choice problem
+
+### Returns
+- `Dict{String,Any}`: a dictionary with the results. The dictionary has the following keys:
+    - `argmax::Array{Float64,1}`: the optimal choice of goods
+    - `budget::Float64`: the budget used
+    - `objective_value::Float64`: the value of the objective function
+"""
 function solve(problem::MySimpleCobbDouglasChoiceProblem)::Dict{String,Any}
 
     # initialize -
@@ -37,6 +51,18 @@ function solve(problem::MySimpleCobbDouglasChoiceProblem)::Dict{String,Any}
     return results
 end
 
+"""
+    solve(model::MyValueIterationModel, problem::MyMDPProblemModel) -> MyValueFunctionPolicy
+
+Solve the MDP problem using value iteration.
+
+### Arguments
+- `model::MyValueIterationModel`: the value iteration model
+- `problem::MyMDPProblemModel`: the MDP problem
+
+### Returns
+- value function policy instance
+"""
 function solve(model::MyValueIterationModel, problem::MyMDPProblemModel)::MyValueFunctionPolicy
     
     # data -
